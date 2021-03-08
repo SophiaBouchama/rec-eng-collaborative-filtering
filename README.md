@@ -49,7 +49,7 @@ Assumptions must be made in order to establish a consistent and valid recommenda
 1) Since the data is Unary, the listen count is the implicit metric used to represents a user’s rating. For a given song, the higher the listen count, the more the user has preference towards the song.
 2)  The Unary rating scale has a lower bound of 1 and no upper bound.
 3)  If a listen count is not present for a given song, it will be represented by a rating of 0 which assumes that the song has not yet been observed.
-5)The similarity between users or items is dictated only by rating scores present in the
+4)  The similarity between users or items is dictated only by rating scores present in the
 dataset.
 
 ### Data Distribution (Long Tail Plot)
