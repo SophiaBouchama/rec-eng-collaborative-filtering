@@ -70,4 +70,20 @@ dataset.
 
 <img width="891" alt="image" src="https://user-images.githubusercontent.com/23408575/110372950-d6846900-8046-11eb-9d42-050f208d921f.png">
 
+### Building the Memory Based Models
+<img width="144" alt="image" src="https://user-images.githubusercontent.com/23408575/110631324-4f4a0900-819e-11eb-87b1-c2125079404c.png">
 
+#### Data Sparsity Experimentation
+
+An evaluation will be performed on how different levels of sparsity affect the performance of these algorithms. To carry out these experiments, two subsets of the data will be taken. One with a high sparsity and one with a lower sparsity.
+
+In order to select two subsets of data with different levels of sparsity, it can be observed that there are some users who are more active than others. In the pre-processing stage, the data will be ordered by user activity, from most active users to the least active users. The top 25% of this data frame will be selected forming a denser dataset with sparsity of approximately 6.96%. The bottom 25% of the data frame will be selected forming a sparser dataset of approximately 0.53%. For the remainder of this report, the datasets will be referred to as ‘Top 25%’ and ‘Bottom 25%’ to identify the two datasets of varying sparsity level.
+
+##### Pre-processing procedure:
+1) Read in the files ‘triplet.txt’ and ‘song_metadata.csv’ as a data frame using pandas.
+2) Merge the two data frames together so that one data frame remains capturing all the information.
+3) Sort the data frame in order of user activity by counting the number of user rating occurrences.
+4) Select the top 25% of the data frame and the bottom 25% of the data frame.
+
+##### Flowchart Summary of Models Implemented
+<img width="806" alt="image" src="https://user-images.githubusercontent.com/23408575/110631842-dd25f400-819e-11eb-941d-6a85b80fa732.png">
