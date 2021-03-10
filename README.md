@@ -4,7 +4,7 @@ Please see the full paper at: /rec-eng-collaborative-filtering/collaborative-fil
 
 ### Intro
 
-There are many contexts in which recommendations could benefit a user, this project will be dealing with music-based recommendations, using a dataset compromising of a set of users, songs and listen count. In this context, recommendations can enhance user experience by assisting a user’s decision in selecting songs, rather than searching through a large collection. It can also enable them to discover new or alternative music that they may enjoy.
+This project will be dealing with music-based recommendations, using a dataset compromising of a set of users, songs and listen count. In this context, recommendations can enhance user experience by assisting a user’s decision in selecting songs, rather than searching through a large collection. It can also enable them to discover new or alternative music that they may enjoy.
 
 In this research project, a Python program has been written that explores various recommendation system implementations and how they perform with more or less data. This project uses the Million Song Data Set which contains data on users and their song listening activity in order to build a recommendation engine for users. The data set can be found here: http://millionsongdataset.com
 
