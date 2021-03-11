@@ -98,7 +98,7 @@ The function inputs a given user-item matrix and a ‘type’ which can be eithe
 
 #### Computing Memory Based Predictions:
 
-Four prediction functions have been written called ‘basic’, ‘topk’, ‘no_bias’ and ‘topk_no_bias’. They all have the following inputs as parameters: the appropriate similarity matrix, the type (‘user’ based or ‘item’ based) and the user-item matrix as a parameter.
+4 prediction functions have been written called ‘basic’, ‘topk’, ‘no_bias’ and ‘topk_no_bias’. They all have the following inputs as parameters: the appropriate similarity matrix, the type (‘user’ based or ‘item’ based) and the user-item matrix as a parameter.
 
 ##### 1) 'Basic' Predition (Baseline model):
 
@@ -108,7 +108,34 @@ This then must be normalised by the number of ratings given by user 𝑢 resulti
 
 Likewise, for Item Based Collaborative Filtering, the similarity between items is considered instead of the user similarity. Therefore, depending on the type parameter, the same function can then be adapted for User Based and Item Based models by interchanging the similarity matrix.
 
-##### 1) 'Basic' Predition (Baseline model):
+##### 2) 'Top-k' Predition:
 
-##### Flowchart Summary of Models Implemented:
+To improve the performance of the ‘Basic’ prediction function, rather than considering all of the users and all of the items to base predictions on, instead, only the most similar users or items are to be considered. The ‘Basic’ prediction function is adapted to sum over only the neighbourhood of users 𝑘 with the highest similarity score to the target user. The neighbourhood is defined by selecting the top-𝑘 most similar users which is applied to the prediction function
+
+##### 3) ‘No Bias’ Prediction:
+
+The main issue with the ‘Basic’ approach is that user rating scale may vary. For example, a user may rate items more highly on average, e.g. by actively listening to songs. On the other hand, a user may rate items more harshly e.g. a user who may not listen to music that frequently. Therefore, the relative difference in ratings given by users must be given more importance than the absolute ratings themselves. In order to account for this problem, the data can be normalised by computing the mean centred rating. 
+
+To adapt this function for Item Based models, the mean item rating is calculated instead and added back to the function.
+
+##### 3) ‘No Bias and Top-𝑘’ Prediction:
+
+The final improvement made to the prediction function, includes all the adjustments previously considered. By combining the ‘No Bias’ function with the ‘Top-𝑘’ function, this results in a more optimised neighbourhood-based function for computing predictions.
+
+This function is now normalised to account for the grade inflation/deflation caused by varying rating scales of individuals. It also only considers the top-𝑘 most similar users/items in the neighbourhood, discarding users/items that are too dissimilar.
+
+
+#### Flowchart Summary of Models Implemented:
 <img width="806" alt="image" src="https://user-images.githubusercontent.com/23408575/110631842-dd25f400-819e-11eb-941d-6a85b80fa732.png">
+
+#### Evaluation
+
+##### Hypotheses
+
+Project aims and the research questions proposed must be formalised into a set of hypotheses that can be tested:
+
+1) The ‘Top 25%’ dataset with sparsity 6.96% will result in the algorithms producing more accurate predictions than the ‘Bottom 25%’ dataset with sparsity 0.53%. In other words, the sparser dataset will produce higher RMSE scores than the denser dataset.
+2) Out of all the Memory Based algorithms the ‘basic’ prediction algorithm will perform the worst and have the highest RMSE score. The ‘no_bias_top_k’ prediction algorithm will perform the best and have the lowest RMSE score.
+3) Out of the Memory Based and Model Based algorithms, the Model Based algorithm will perform better producing lower RMSE scores.
+
+##### Hypotheses
