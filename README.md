@@ -138,4 +138,14 @@ Project aims and the research questions proposed must be formalised into a set o
 2) Out of all the Memory Based algorithms the ‘basic’ prediction algorithm will perform the worst and have the highest RMSE score. The ‘no_bias_top_k’ prediction algorithm will perform the best and have the lowest RMSE score.
 3) Out of the Memory Based and Model Based algorithms, the Model Based algorithm will perform better producing lower RMSE scores.
 
-##### Hypotheses
+#### Dataset Partitioning
+
+After the pre-processing stage, a user-item matrix is constructed for two datasets: ‘Top 25%’ and ‘Bottom 25%’. Each matrix will be randomly split into training and testing data using a 70:30 split, this ratio is often split used when training a model.
+
+Each Collaborative Filtering model will be trained using the training data and then evaluated against the test data. The results produced can then be compared against the hypotheses to draw conclusions.
+
+##### Handelling Sparse Datasets
+
+A 70:30 split was concluded to be more suitable rather than using the 𝑘-fold validation method. Since most of the data is sparse, when attempting to split the data into subgroups, each fold was left too sparse with insufficient data to produce acceptable results. Many rows and columns were left with only zeros which would have produced unreliable results due to insufficient training and testing data.
+
+Since the data being dealt with is sparse, the vast majority of the user-item entries will be zero. In practice, the lack of data can end up resulting in many errors within the code that occur when the denominator of mathematical functions evaluate to zero. To avoid dividing by zero errors, a very small arbitrary number, 𝜀 has been added to the denominators where necessary. This ensures that the denominators are not zero during runtime. 𝜀 is set to a very small constant value of 1 × 10ì"îî which will therefore have a negligible effect on the results.
