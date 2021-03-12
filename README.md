@@ -53,6 +53,7 @@ contains the data used in this project:
   5) Evaluation
   6) Results and Discussion
   7) Conclusions
+  8) References
 
 ### Assumptions
 
@@ -118,12 +119,25 @@ The main issue with the ‘Basic’ approach is that user rating scale may vary.
 
 To adapt this function for Item Based models, the mean item rating is calculated instead and added back to the function.
 
-##### 3) ‘No Bias and Top-𝑘’ Prediction:
+##### 4) ‘No Bias and Top-𝑘’ Prediction:
 
 The final improvement made to the prediction function, includes all the adjustments previously considered. By combining the ‘No Bias’ function with the ‘Top-𝑘’ function, this results in a more optimised neighbourhood-based function for computing predictions.
 
 This function is now normalised to account for the grade inflation/deflation caused by varying rating scales of individuals. It also only considers the top-𝑘 most similar users/items in the neighbourhood, discarding users/items that are too dissimilar.
 
+##### Dealing with the Long Tail:
+
+Due to the long tail distribution discussed earlier, we can observe that some songs are very popular whereas the majority of songs are left unrated. Breese proposed the idea of inverse user frequency (IUF) based upon the notion of Inverse Document Frequency (IDF) used in Content Based Filtering and information retrieval tasks. The intuition behind IDF is to penalise words that occur frequently in a document since common terms are not useful in identifying relevant documents in a collection. 
+
+This idea can be applied to a set of users and items in a User Based Collaborative Filtering model for recommendation systems. Popular items are less beneficial in revealing similarity than less popular items. Therefore, decreasing the weight of more universally preferred songs can better capture similarity, thus generating more meaningful recommendation results.
+
+In order to apply IUF to a User Based model, a weighting must be calculated so that more popular items are penalised by reducing their significance. 
+
+In the implementation of the Pearson similarity measure, the function ‘pearson_sim’ has an optional parameter that enables the choice of including the weighing score or not. IUF is a User Based Collaborative Filtering technique, therefore the weighting score can only be applied in User Based approaches. The default weighting is set to 1 for Item Based approaches whereas User Based approaches can optionally apply the weighting or not.
+
+### Model Based Implementation
+
+From the python surprise library, the SVD algorithm will be imported and applied to the datasets. The data will be pre-processed in the same way as the Memory Based implementation. The ‘Top 25%’ and ‘Bottom 25%’ data frames are then split into training and testing data where the training data is passed through the SVD algorithm. Finally, the RMSE score is produced for each data set.
 
 #### Flowchart Summary of Models Implemented:
 <img width="806" alt="image" src="https://user-images.githubusercontent.com/23408575/110631842-dd25f400-819e-11eb-941d-6a85b80fa732.png">
@@ -149,3 +163,20 @@ Each Collaborative Filtering model will be trained using the training data and t
 A 70:30 split was concluded to be more suitable rather than using the 𝑘-fold validation method. Since most of the data is sparse, when attempting to split the data into subgroups, each fold was left too sparse with insufficient data to produce acceptable results. Many rows and columns were left with only zeros which would have produced unreliable results due to insufficient training and testing data.
 
 Since the data being dealt with is sparse, the vast majority of the user-item entries will be zero. In practice, the lack of data can end up resulting in many errors within the code that occur when the denominator of mathematical functions evaluate to zero. To avoid dividing by zero errors, a very small arbitrary number, 𝜀 has been added to the denominators where necessary. This ensures that the denominators are not zero during runtime. 𝜀 is set to a very small constant value of 1 × 10ì"îî which will therefore have a negligible effect on the results.
+
+##### Evaluation Metric
+
+RMSE is the chosen evaluation metric for this project, it is a suitable metric for recommendation systems, as previously highlighted in the literature. RMSE is a relative measure that is used to compare the performance of the predictions that each algorithm produces against all the others.
+
+##### Experimental Considerations
+
+1) Controlling Variables:
+
+For the Memory Based or Model Based implementation, two main sparsity experiments will be conducted using the ‘Top 25%’ and ‘Bottom 25%’ datasets, where a comparison will be made. For each of these experiments, the only independent variable (changing variable) will be the Collaborative Filtering algorithm used, therefore all over variables must be controlled. The dataset used in this project is static and not dynamic hence the users, items and listen count will remain constant throughout and the training and testing split will remain at the same ratio of 70:30. For experimental purposes, the variable 𝑘 used in the Memory Based top-𝑘 algorithms will be controlled and remain at a constant value of 𝑘 = 10. Although it is unknown which 𝑘 value would contribute to better algorithmic performance, the aim of the project is to analyse how algorithms perform against each other with varying levels of sparsity, not which 𝑘 value is the most optimal.
+
+2) Repetition:
+
+Since the training and testing samples are split differently every time the program runs, in order to validate the results of the experiments, three repetitions of each algorithm test will be carried out and the mean RMSE score will be calculated.
+
+
+
