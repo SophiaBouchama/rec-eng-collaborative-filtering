@@ -162,7 +162,7 @@ Each Collaborative Filtering model will be trained using the training data and t
 
 A 70:30 split was concluded to be more suitable rather than using the 𝑘-fold validation method. Since most of the data is sparse, when attempting to split the data into subgroups, each fold was left too sparse with insufficient data to produce acceptable results. Many rows and columns were left with only zeros which would have produced unreliable results due to insufficient training and testing data.
 
-Since the data being dealt with is sparse, the vast majority of the user-item entries will be zero. In practice, the lack of data can end up resulting in many errors within the code that occur when the denominator of mathematical functions evaluate to zero. To avoid dividing by zero errors, a very small arbitrary number, 𝜀 has been added to the denominators where necessary. This ensures that the denominators are not zero during runtime. 𝜀 is set to a very small constant value of 1 × 10ì"îî which will therefore have a negligible effect on the results.
+Since the data being dealt with is sparse, the vast majority of the user-item entries will be zero. In practice, the lack of data can end up resulting in many errors within the code that occur when the denominator of mathematical functions evaluate to zero. To avoid dividing by zero errors, a very small arbitrary number, 𝜀 has been added to the denominators where necessary. This ensures that the denominators are not zero during runtime. 𝜀 is set to a very small constant value of 1 × 1x10^(-100) which will therefore have a negligible effect on the results.
 
 ##### Evaluation Metric
 
