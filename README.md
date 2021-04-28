@@ -179,3 +179,7 @@ For the Memory Based or Model Based implementation, two main sparsity experiment
 Since the training and testing samples are split differently every time the program runs, in order to validate the results of the experiments, three repetitions of each algorithm test will be carried out and the mean RMSE score will be calculated.
 
 #### Results
+
+##### Top 25% Dataset (Less sparse):
+
+Memory Based
