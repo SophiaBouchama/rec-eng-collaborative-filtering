@@ -182,4 +182,11 @@ Since the training and testing samples are split differently every time the prog
 
 ##### Top 25% Dataset (Less sparse):
 
-Memory Based
+1) Memory Based Collaborative Filtering
+  i) Item Based
+
+<img width="934" alt="Screenshot 2021-04-28 at 17 36 01" src="https://user-images.githubusercontent.com/23408575/116440260-3548b080-a848-11eb-8454-086b1e370c26.png">
+
+<img width="847" alt="Screenshot 2021-04-28 at 17 36 55" src="https://user-images.githubusercontent.com/23408575/116440370-54dfd900-a848-11eb-9f2d-a1ccd5fa6b9a.png">
+
+
