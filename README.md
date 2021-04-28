@@ -1,4 +1,4 @@
-### The Effects of Data Sparsity in Collaborative Filtering Recommendation Systems (Experimental Study)
+# The Effects of Data Sparsity in Collaborative Filtering Recommendation Systems (Experimental Study)
 
 Please see the full paper at: /rec-eng-collaborative-filtering/Study/collaborative-filtering-paper.zip
 
